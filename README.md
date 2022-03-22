@@ -6,7 +6,7 @@ Notre projet et de reproduire le service d’amazon « AWS Sagemaker » qui cons
 Le client ne se souciera pas des librairies , veillez à laisser son pc allumer … ,il devra juste assurer que son code fonctionne
 .
 
-![Alt text](conception.png)
+![Alt text](static/conception.png)
 
 
 ## Requirement:
