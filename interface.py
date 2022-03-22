@@ -1,14 +1,17 @@
 import tkinter as tk
+from tkFileDialog import askopenfilename
+
 
 
 
 root = tk.Tk()
 frm = tk.Frame(root)
-frm.grid(column=50, row=50)
+frm.grid()
+
 tk.Label(frm, text="Hello World!").grid(column=0, row=0)
-tk.columnconfigure(50, 20)
-tk.Button(frm,text='Browse' ).grid(column=2, row=0)
-tk.Label(frm,text='Browse').grid(column=2, row=1)
+
+tk.Button(frm,text='Browse' , command=askopenfile()).grid(column=2, row=0)
+tk.Label(frm,text='Browse').grid(column=2, row=1 , ipadx=500)
 tk.Label(frm,text='Browse' ).grid(column=2, row=2)
 tk.Label(frm,text='Browse' ).grid(column=2, row=3)
 tk.Label(frm,text='Browse' ).grid(column=2, row=4)
@@ -28,3 +31,5 @@ def askopenfile():
 
 
 
+def sendSSH(i):
+    pass
