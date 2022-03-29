@@ -4,12 +4,16 @@ import tkinter.filedialog
 import PIL
 from PIL import ImageTk
 from PIL import Image
+import os
+import shutil
 
 #Fonction AskopenFilename pour ouvrir un dossier courant
 LST_Types = [( "Script python" , ".py" )]
 def askopenfile():
-        return tk.filedialog.askopenfilename ( title = "Sélectionnez un fichier ..." , filetypes = LST_Types )
-
+        p=tk.filedialog.askopenfilename ( title = "Sélectionnez un fichier ..." , filetypes = LST_Types )
+        dest=(os.path.abspath(os.getcwd())+"\\Input").replace("\\","/")
+        shutil.move(p,dest)
+        return p
 #Interface Graphique
 root = tk.Tk()
 root.title("SykzSageMaker")
@@ -20,6 +24,9 @@ canvas1.pack()
 
 button1=tk.Button(text='Déposer votre Fichier' , command=askopenfile)
 canvas1.create_window(500,50,window=button1)
+canvas1.pack()
+button2=tk.Button(text='Compiler' , command=send)
+canvas1.create_window(500,500,window=button1)
 canvas1.pack()
 
 imageLogo  = Image.open("static/logo.png")
@@ -84,7 +91,8 @@ Srv4.setStatus()
 
 
 
-
+def send():
+    pass
 
 #tk.Label(frm,text='Browse').grid(column=2, row=9)
 #tk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=10)
