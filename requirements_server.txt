@@ -1,11 +1,6 @@
 Numpy
 Scipy
 Scikit-learn
-Theano
-TensorFlow
-Keras
-PyTorch
 Pandas
 Matplotlib
-tkinter
 PIL

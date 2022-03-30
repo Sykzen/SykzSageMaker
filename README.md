@@ -7,14 +7,38 @@ Le client ne se souciera pas des librairies , veillez à laisser son pc allumer 
 .
 ## Conception
 ![Alt text](static/conception.png)
-## 
-##
-## Requirement:
+## Architecture d'envoie de fichier
+![Alt text](static/architecture_text.png)
+
+## Requirement Client:
 
 -git </br>
--requirements lib</br>
--requirements python</br>
+-python3 </br>
+-pip
+## Requirement Serveur:
+-git </br>
+-python3 </br>
+-pip
 
+## Utilisations Client
+```
+git clone https://github.com/Sykzen/SykzSageMaker.git
+cd SykzSageMaker
+pip install -r requirements_client.txt
+python3 client.py
+```
+## Utilisations Serveur "main"
+```
+git clone https://github.com/Sykzen/SykzSageMaker.git
+cd SykzSageMaker
+pip install -r requirements_server.txt
+python3 server.py
+```
+
+## Add Server
+```
+A venir
+```
 ## Contributors
 
 - [Sykzen](https://github.com/Sykzen) 
