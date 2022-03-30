@@ -5,6 +5,10 @@ Projet : Développer une application qui permet de compiler des modèles de mach
 Notre projet et de reproduire le service d’amazon « AWS Sagemaker » qui consiste à déployer et à entrainer des modèle de ML dans les serveurs raspberry . en cas pratique j’envoie un bout de code à la GUI faite par nous le bout de code sera alors ensuite renvoyé vers le serveur main  (qui gère la distribution des tâches)par SSH ,  le code sera ensuite compiler sur l’un des serveur en fonction de leurs disponibilités , une fois terminé les output (fichiers,txt..) seront communiqué au client directement , 
 Le client ne se souciera pas des librairies , veillez à laisser son pc allumer … ,il devra juste assurer que son code fonctionne
 .
+## Demo Utulisation
+
+## Interface Client
+![Alt text](static/interface.png)
 ## Conception
 ![Alt text](static/conception.png)
 ## Architecture d'envoie de fichier
@@ -39,6 +43,7 @@ python3 server.py
 ```
 A venir
 ```
+
 ## Contributors
 
 - [Sykzen](https://github.com/Sykzen) 
