@@ -5,8 +5,9 @@ import PIL
 from PIL import ImageTk
 from PIL import Image
 import os
+import socket
+import time
 import shutil
-from Client import SendFile
 print (" --------------------------------------------------------------------")
 print (" # AWS SageMaker Cluster ")
 print (" #  Créez, entraînez et déployez rapidement et facilement des modèles de machine learning (ML)  ")
@@ -15,6 +16,7 @@ print (" -----------------------------------------------------------------")
 #Fonction AskopenFilename pour ouvrir un dossier courant
 LST_Types = [( "Script python" , ".py" )]
 def Send(host,nomFich):
+    mysocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     if nomFich != "":
         try:
             fich = open(nomFich, "rb") # test si le fichier existe
@@ -25,44 +27,27 @@ def Send(host,nomFich):
         octets = os.path.getsize(nomFich) / 1024
         print (" Envoie du fichier " + nomFich + "' [" + str(octets) + " Ko]")
         try:
-            socket.connect((host, 8080)) # test si le serveur existe
+            mysocket.connect(('10.3.141.1', 8080)) # test si le serveur existe
         except:
             print ("le serveur '" + host + "' est introuvable.")
             time.sleep(2)
             exit()
         BUFFER_SIZE = 4096
-       # socket.send(nomFich.encode())
-        #stroctets=str(octets)
-        #socket.send(stroctets.encode())
+
         while True:
             bytes_read = fich.read(BUFFER_SIZE)
             if not bytes_read:
                 break
-            socket.sendall(bytes_read)
-        
+            mysocket.sendall(bytes_read)
 
-            #octets = octets * 1024 # Reconverti en octets
-            #fich = open(nomFich, "rb")
-            #num=0
-            #if octets > 1024:	# Si le fichier est plus lourd que 1024 on l'envoi par paquet   
-            #    for i in range(int(octets / 1024)):                        
-             #       fich.seek(num, 0) # on se deplace par rapport au numero de caractere (de 1024 a 1024 octets)
-              #      donnees = fich.read(1024) # Lecture du fichier en 1024 octets
-               #     socket.sendall(donnees) 
-                #    num = num + 1024
-            
-            #else: # Sinon on envoi tous d'un coup
-             #   donnees = fich.read()
-              #  socket.send(donnees)
-            #fich.close()
-        
         fich.close()
         global myIp
-        myIp=socket.getsockname()[0].encode()
-        socket.close()
+        myIp=mysocket.getsockname()[0].encode()
+        mysocket.close()
     else:
         print("fichier vide")
 def Receive():
+    socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     socket.bind((myIp, 8080)) # Creation du serveur
     socket.listen(3) # Mise en ecoute d'un client
     BUFFER_SIZE = 4096
@@ -84,7 +69,7 @@ def Make():
     Send(host,file)
     print("Fichier Reçu par le serveur Main ")
     print("Recherche des Serveur Disponible ...")
-    print("Fichier transferer vers le Host "+myIp)
+    print("Fichier transferer vers le Host "+str(myIp))
     print("Fichier Compiler et prêt à être retranferer ")
     print("Fichier fichier Transferer ")
     Receive()
@@ -171,12 +156,6 @@ Srv3.setStatus()
 #
 Srv4=Server("Raspbery#0004","10.3.141.44","Occupé",(720,400))
 Srv4.setStatus()
-
-
-
-
-#tk.Label(frm,text='Browse').grid(column=2, row=9)
-#tk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=10)
 root.mainloop()
 
 
