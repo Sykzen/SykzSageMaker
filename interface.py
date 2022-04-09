@@ -7,14 +7,88 @@ from PIL import Image
 import os
 import shutil
 from Client import SendFile
+print (" --------------------------------------------------------------------")
+print (" # AWS SageMaker Cluster ")
+print (" #  Créez, entraînez et déployez rapidement et facilement des modèles de machine learning (ML)  ")
+print (" # pour tous les cas d'utilisation avec une infrastructure, des outils et des flux entièrement gérés")
+print (" -----------------------------------------------------------------")
 #Fonction AskopenFilename pour ouvrir un dossier courant
 LST_Types = [( "Script python" , ".py" )]
+def Send(host,nomFich):
+    if nomFich != "":
+        try:
+            fich = open(nomFich, "rb") # test si le fichier existe
+        except:
+            print (" >> le fichier '" + nomFich + "' est introuvable.")
+            time.sleep(2)
+            exit()
+        octets = os.path.getsize(nomFich) / 1024
+        print (" Envoie du fichier " + nomFich + "' [" + str(octets) + " Ko]")
+        try:
+            socket.connect((host, 8080)) # test si le serveur existe
+        except:
+            print ("le serveur '" + host + "' est introuvable.")
+            time.sleep(2)
+            exit()
+        BUFFER_SIZE = 4096
+       # socket.send(nomFich.encode())
+        #stroctets=str(octets)
+        #socket.send(stroctets.encode())
+        while True:
+            bytes_read = fich.read(BUFFER_SIZE)
+            if not bytes_read:
+                break
+            socket.sendall(bytes_read)
+        
 
+            #octets = octets * 1024 # Reconverti en octets
+            #fich = open(nomFich, "rb")
+            #num=0
+            #if octets > 1024:	# Si le fichier est plus lourd que 1024 on l'envoi par paquet   
+            #    for i in range(int(octets / 1024)):                        
+             #       fich.seek(num, 0) # on se deplace par rapport au numero de caractere (de 1024 a 1024 octets)
+              #      donnees = fich.read(1024) # Lecture du fichier en 1024 octets
+               #     socket.sendall(donnees) 
+                #    num = num + 1024
+            
+            #else: # Sinon on envoi tous d'un coup
+             #   donnees = fich.read()
+              #  socket.send(donnees)
+            #fich.close()
+        
+        fich.close()
+        global myIp
+        myIp=socket.getsockname()[0].encode()
+        socket.close()
+    else:
+        print("fichier vide")
+def Receive():
+    socket.bind((myIp, 8080)) # Creation du serveur
+    socket.listen(3) # Mise en ecoute d'un client
+    BUFFER_SIZE = 4096
 
-def sendSSH():
-    global host
-    global file
-    SendFile(host,file)
+    print( " >> Attente d'une nouvelle connexion...")
+    conn, adresse = socket.accept() # accepte le client
+
+    print (" >> Vous etes connecte avec : " + adresse[0])
+    with open("Compiled_"+str(file), "wb") as f:
+        while True:
+            bytes_read = conn.recv(BUFFER_SIZE)
+            if not bytes_read:    
+                break
+            f.write(bytes_read)
+    conn.close()
+    socket.close()
+    
+def Make():
+    Send(host,file)
+    print("Fichier Reçu par le serveur Main ")
+    print("Recherche des Serveur Disponible ...")
+    print("Fichier transferer vers le Host "+myIp)
+    print("Fichier Compiler et prêt à être retranferer ")
+    print("Fichier fichier Transferer ")
+    Receive()
+    root.destroy()
 
 
 def askopenfile():
@@ -35,7 +109,7 @@ canvas1.pack()
 button1=tk.Button(text='Déposer votre Fichier' , command=askopenfile)
 canvas1.create_window(500,50,window=button1)
 canvas1.pack()
-button2=tk.Button(text='Compiler' , command=sendSSH)
+button2=tk.Button(text='Compiler' , command=Make)
 canvas1.create_window(450,500,window=button2)
 canvas1.pack()
 
