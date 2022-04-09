@@ -6,26 +6,27 @@ from PIL import ImageTk
 from PIL import Image
 import os
 import shutil
-
+from Client import SendFile
 #Fonction AskopenFilename pour ouvrir un dossier courant
 LST_Types = [( "Script python" , ".py" )]
 
-def send():
-    os.system("git add Input")
-    os.system(""" git commit -m "file to compile" """)
-    os.system("git push")
+
+def sendSSH():
+    global host
+    global file
+    SendFile(host,file)
+
 
 def askopenfile():
+        global host
+        global file
         p=tk.filedialog.askopenfilename ( title = "Sélectionnez un fichier ..." , filetypes = LST_Types )
-        if p=="":
-            pass
-        else:
-            dest=(os.path.abspath(os.getcwd())+"\\Input").replace("\\","/")
-            shutil.move(p,dest)
+        file=p
+        host="10.3.141.1"
             
 #Interface Graphique
 root = tk.Tk()
-root.title("SykzSageMaker")
+root.title("AmazonSageMaker")
 canvas1 = tk.Canvas(root, width = 1000, height = 600, bg = 'lightsteelblue2', relief = 'raised')
 canvas1.pack()
 #canvas1.grid()
@@ -34,12 +35,12 @@ canvas1.pack()
 button1=tk.Button(text='Déposer votre Fichier' , command=askopenfile)
 canvas1.create_window(500,50,window=button1)
 canvas1.pack()
-button2=tk.Button(text='Compiler' , command=send)
+button2=tk.Button(text='Compiler' , command=sendSSH)
 canvas1.create_window(450,500,window=button2)
 canvas1.pack()
 
 imageLogo  = Image.open("static/logo.png")
-imageLogo  =imageLogo.resize((100,130),Image.ANTIALIAS)
+imageLogo  =imageLogo.resize((200,130),Image.ANTIALIAS)
 imageLogo  =ImageTk.PhotoImage(imageLogo)
 canvas1.create_image(0,1, anchor = tk.NW, image=imageLogo)
 canvas1.pack()
@@ -85,16 +86,16 @@ canvas1.create_window(600,450,window=label4)
 canvas1.pack()
 root.after(0, update, 0)
 #Server 1
-Srv1=Server("Raspbery#0001","192.178.145.0","Disponible",(220,200))
+Srv1=Server("Raspbery#0001","10.3.141.14","Disponible",(220,200))
 Srv1.setStatus()
 #
-Srv2=Server("Raspbery#0002","192.198.195.147","Disponible",(220,400))
+Srv2=Server("Raspbery#0002","10.3.141.88","Disponible",(220,400))
 Srv2.setStatus()
 #
-Srv3=Server("Raspbery#0003","192.138.125.50","Disponible",(720,200))
+Srv3=Server("Raspbery#0003","10.3.141.14","Disponible",(720,200))
 Srv3.setStatus()
 #
-Srv4=Server("Raspbery#0004","192.144.125.44","Occupé",(720,400))
+Srv4=Server("Raspbery#0004","10.3.141.44","Occupé",(720,400))
 Srv4.setStatus()
 
 
@@ -104,6 +105,5 @@ Srv4.setStatus()
 #tk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=10)
 root.mainloop()
 
-def sendSSH(i):
-    pass
+
 
