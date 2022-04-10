@@ -89,8 +89,6 @@ Sur le rc.local, il faut ajouter la ligne suivante (avant exit 0) :
 /bin/sh build/build_adhoc.sh
 ```
 
-## Make
-
 ## Contributors
 
 - [Sykzen](https://github.com/Sykzen)
