@@ -1,14 +1,15 @@
 import time, socket, os
-socket1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
 client_number=0
 
 def receive():
-    socket1.bind(("10.3.141.1", 8080)) # Creation du serveur
-    socket1.listen(3) # Mise en ecoute d'un client
+    socketa = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    socketa.bind(("10.3.141.1", 8080)) # Creation du serveur
+    socketa.listen(3) # Mise en ecoute d'un client
     BUFFER_SIZE = 4096
 
     print( " >> Attente d'une nouvelle connexion...")
-    conn, adresse = socket1.accept() # accepte le client
+    conn, adresse = socketa.accept() # accepte le client
 
     print (" >> Vous etes connecte avec : " + adresse[0])
     with open("File_compile.py", "wb") as f:
@@ -19,17 +20,17 @@ def receive():
             f.write(bytes_read)
     ipsender=adresse[0]
     conn.close()
-    socket1.close()
+    socketa.close()
     Compile(ipsender)
 def Compile(ipsender):
     print(ipsender)
     import subprocess
     with open("output_N_"+str(client_number)+".txt", "w+") as output:
-        subprocess.call(["python", "test.py"], stdout=output)
+        subprocess.call(["python", "File_compile.py"], stdout=output)
     
     send("output_N_"+str(client_number)+".txt",ipsender)
 # close the server socket
-def send(nomFiche,host):
+def send(nomFich,host):
     socket2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     if nomFich != "":
         try:

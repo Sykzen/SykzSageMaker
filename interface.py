@@ -47,33 +47,37 @@ def Send(host,nomFich):
     else:
         print("fichier vide")
 def Receive():
-    socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    socket.bind((myIp, 8080)) # Creation du serveur
-    socket.listen(3) # Mise en ecoute d'un client
+    socket2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    socket2.bind((myIp, 8080)) # Creation du serveur
+    socket2.listen(3) # Mise en ecoute d'un client
     BUFFER_SIZE = 4096
 
     print( " >> Attente d'une nouvelle connexion...")
-    conn, adresse = socket.accept() # accepte le client
-
+    conn, adresse = socket2.accept() # accepte le client
+    namefilah=file.split("/")[-1][:-2]
     print (" >> Vous etes connecte avec : " + adresse[0])
-    with open("Compiled_"+str(file), "wb") as f:
+    with open("Compiled_"+str(namefilah)+"txt", "wb") as f:
         while True:
             bytes_read = conn.recv(BUFFER_SIZE)
+            print(bytes_read)
             if not bytes_read:    
                 break
             f.write(bytes_read)
     conn.close()
-    socket.close()
-    
+    socket2.close()
+    f.close()
 def Make():
+    root.destroy()
     Send(host,file)
     print("Fichier Reçu par le serveur Main ")
     print("Recherche des Serveur Disponible ...")
-    print("Fichier transferer vers le Host "+str(myIp))
+    print("Fichier transferer vers le Host "+str(host))
     print("Fichier Compiler et prêt à être retranferer ")
-    print("Fichier fichier Transferer ")
+    print("Fichier Transferer ")
+    print("Fichier Entrain de se compiler ")
     Receive()
-    root.destroy()
+    print("fichier reçu")
+    
 
 
 def askopenfile():
