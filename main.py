@@ -1,5 +1,4 @@
 import time, socket, os
-import logging
 liste_of_addr_ip=["10.3.141.216","10.3.141.158","10.3.141.88"]
 def receive():
     """Fonction pour écouter la demande d'un client"""

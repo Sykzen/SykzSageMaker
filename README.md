@@ -9,7 +9,9 @@ Le client ne se souciera pas des librairies , veillez à laisser son pc allumer 
 .
 
 ## Demo Utulisation
+
 https://user-images.githubusercontent.com/55047001/162601596-e7541125-d977-4e4a-82eb-6537fc7df638.mp4
+
 ## Interface Client
 
 ![Alt text](static/interface.jpg)
@@ -34,6 +36,12 @@ https://user-images.githubusercontent.com/55047001/162601596-e7541125-d977-4e4a-
 -python3 </br>
 -pip
 
+## Requirement Serveur:
+
+-git </br>
+-python3 </br>
+-pip
+
 ## Utilisations Client
 
 ```
@@ -46,17 +54,42 @@ python3 client.py
 ## Utilisations Serveur "main"
 
 ```
+/usr/bin/python3 buid/build_main.py
 git clone https://github.com/Sykzen/SykzSageMaker.git
 cd SykzSageMaker
-pip install -r requirements_server.txt
-python3 server.py
+pip install -r requirements_main.txt
+python3 main.py
+```
+
+Sur le rc.local, il faut ajouter la ligne suivante :
+
+```
+/usr/bin/python3 /home/pi/SykzSageMaker/main.py &
 ```
 
 ## Add Server
 
+Connecter sur l'accèss point ssh du serveur main et faire la commande suivante :
+
 ```
-A venir
+git clone https://github.com/Sykzen/SykzSageMaker
+pip install -r requirements_server.txt
 ```
+
+Sur le serveur main, il faut ajouter le serveur à la liste des serveurs disponibles
+Sur le rc.local, il faut ajouter la ligne suivante (avant exit 0) :
+
+```
+/usr/bin/python3 /home/pi/SykzSageMaker/Server.py &
+```
+
+## Make AD-hoc dhcp
+
+```
+/bin/sh build/build_adhoc.sh
+```
+
+## Make
 
 ## Contributors
 
@@ -64,4 +97,4 @@ A venir
 
 ## Source
 
--https://docs.python.org/3/library/socket.html
+-https://docs.python.org/3/library/socket.html -https://raspberry-pi.fr/executer-programme-demarrage/ -https://sites.google.com/site/blainoperso/debuter-avec-raspberry-pi/14---creer-une-reseau-ad-hoc -https://github.com/simondlevy/RPiAdHocWiFi
