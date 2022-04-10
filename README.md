@@ -87,7 +87,7 @@ Sur le rc.local, il faut ajouter la ligne suivante :
 
 ## Add Server
 
-Connecter sur l'accèss point ssh du serveur main et faire la commande suivante :
+Connecter sur l'accèss point ssh du serveur main et faire la commande suivante : (avant exit 0) :
 
 ```
 git clone https://github.com/Sykzen/SykzSageMaker
@@ -98,7 +98,7 @@ Sur le serveur main, il faut ajouter le serveur à la liste des serveurs disponi
 Sur le rc.local, il faut ajouter la ligne suivante (avant exit 0) :
 
 ```
-/usr/bin/python3 /home/pi/SykzSageMaker/Server.py &
+/usr/bin/python3 /home/pi/SykzSageMaker/server.py &
 ```
 
 ## Make AD-hoc dhcp
@@ -113,7 +113,9 @@ Sur le rc.local, il faut ajouter la ligne suivante (avant exit 0) :
 
 ## Source
 
--https://docs.python.org/3/library/socket.html -https://raspberry-pi.fr/executer-programme-demarrage/ -https://sites.google.com/site/blainoperso/debuter-avec-raspberry-pi/14---creer-une-reseau-ad-hoc -https://github.com/simondlevy/RPiAdHocWiFi
-
+- https://docs.python.org/3/library/socket.html
+- https://raspberry-pi.fr/executer-programme-demarrage/
+- https://sites.google.com/site/blainoperso/debuter-avec-raspberry-pi/14---creer-une-reseau-ad-hoc
+- https://github.com/simondlevy/RPiAdHocWiFi
 - https://github.com/cardinal-dev/cardinal-docker
-- https://fr.wikipedia.org/wiki/Received_Signal_Strength_Indication#:~:text=En%20t%C3%A9l%C3%A9communications%2C%20le%20Received%20Signal,l'intensit%C3%A9%20du%20signal%20re%C3%A7u.
+- https://fr.wikipedia.org/wiki/Received_Signal_Strength_Indication#:~:text=En%20t%C3%A9l%C3%A9communications%2C%20le%20Received%20Signal
