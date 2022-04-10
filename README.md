@@ -98,3 +98,5 @@ Sur le rc.local, il faut ajouter la ligne suivante (avant exit 0) :
 ## Source
 
 -https://docs.python.org/3/library/socket.html -https://raspberry-pi.fr/executer-programme-demarrage/ -https://sites.google.com/site/blainoperso/debuter-avec-raspberry-pi/14---creer-une-reseau-ad-hoc -https://github.com/simondlevy/RPiAdHocWiFi
+
+- https://fr.wikipedia.org/wiki/Received_Signal_Strength_Indication#:~:text=En%20t%C3%A9l%C3%A9communications%2C%20le%20Received%20Signal,l'intensit%C3%A9%20du%20signal%20re%C3%A7u.
