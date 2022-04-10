@@ -24,6 +24,14 @@ https://user-images.githubusercontent.com/55047001/162601596-e7541125-d977-4e4a-
 
 ![Alt text](static/architecture_text.png)
 
+## Interface SysAdmin
+
+![Alt text](static/sysAdminPanel.PNG)
+
+## Interface Access Point
+
+![Alt text](static/raspap.PNG)
+
 ## Requirement Client:
 
 -git </br>
@@ -97,4 +105,5 @@ Sur le rc.local, il faut ajouter la ligne suivante (avant exit 0) :
 
 -https://docs.python.org/3/library/socket.html -https://raspberry-pi.fr/executer-programme-demarrage/ -https://sites.google.com/site/blainoperso/debuter-avec-raspberry-pi/14---creer-une-reseau-ad-hoc -https://github.com/simondlevy/RPiAdHocWiFi
 
+- https://github.com/cardinal-dev/cardinal-docker
 - https://fr.wikipedia.org/wiki/Received_Signal_Strength_Indication#:~:text=En%20t%C3%A9l%C3%A9communications%2C%20le%20Received%20Signal,l'intensit%C3%A9%20du%20signal%20re%C3%A7u.
