@@ -1,0 +1,4 @@
+iwconfig wlan0 mode Ad-Hoc
+ifconfig wlan0 essid Raspberry-Pi-1
+
+exit 0

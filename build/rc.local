@@ -1,0 +1,6 @@
+ifconfig wlan0 down
+iwconfig wlan0 mode Ad-Hoc
+iwconfig wlan0 essid AWSadhoc  
+ifconfig wlan0 192.168.2.2           
+ifconfig wlan0 up
+udhcpd /etc/udhcpd.conf
